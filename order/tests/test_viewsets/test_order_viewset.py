@@ -14,8 +14,8 @@ class TestOrderViewSet(APITestCase):
     client = APIClient()
 
     def setUp(self):
-        self.category = CategoryFactory(title='technology')
-        self.product = ProductFactory(title='mouse', price=100, category=[self.category])
+        self.category = CategoryFactory(title='technology', active=True)
+        self.product = ProductFactory(title='mouse', price=100, category=self.category)
         self.order = OrderFactory(product=[self.product])
 
     def test_order(self):
@@ -27,15 +27,15 @@ class TestOrderViewSet(APITestCase):
 
         order_data = json.loads(response.content)[0]
         self.assertEqual(order_data['product'][0]['title'], self.product.title)
-        self.assertEqual(order_data['product'][0]['price'], self.product.price)
+        self.assertEqual(order_data['product'][0]['price'], str(self.product.price))
         self.assertEqual(order_data['product'][0]['active'], self.product.active)
-        self.assertEqual(order_data['product'][0]['category'][0]['title'], self.category.active)
+        self.assertEqual(order_data['product'][0]['category'][0]['title'], self.category.title)
 
     def test_create_order(self):
         user = UserFactory()
         product = ProductFactory()
         data = json.dumps({
-            'products_id': [product.id],
+            'product': [product.id],
             'user': user.id
         })
 

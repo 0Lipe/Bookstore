@@ -23,25 +23,27 @@ class TestOrderViewSet(APITestCase):
         )
 
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-        product_data = json.loads(response.content)
+        product_data = response.json() 
         self.assertEqual(product_data[0]['title'], self.product.title)
         self.assertEqual(product_data[0]['price'], self.product.price)
         self.assertEqual(product_data[0]['active'], self.product.active)
 
     def test_create_product(self):
         category = CategoryFactory()
-        data = json.dumps({
+        data = {
             'title': 'notebook',
             'price': 800.00,
             'categories_id': [category.id]
-        })
+        }
 
         response = self.client.post(
             reverse('product-list', kwargs={'version': 'v1'}),
-            data=data,
+            data=json.dumps(data),  
             content_type='application/json'
         )
-
+        
+        import pdb; pdb.set_trace()
+        
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
 
         created_product = Product.objects.get(title='notebook')

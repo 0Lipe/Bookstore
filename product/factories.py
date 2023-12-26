@@ -23,10 +23,10 @@ class ProductFactory(factory.django.DjangoModelFactory):
     def category(self, create, extracted, **kwargs):
         if not create:
             return
-        
+
         if extracted:
             for categories in extracted:
-                self.category.add(category)
-    
+                self.category.add(categories)
+
     class Meta:
         model = Product
