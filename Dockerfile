@@ -1,5 +1,5 @@
 # `python-base` sets up all our shared environment variables
-FROM python:3.11-slim as python-base
+FROM python:3.8.1-slim as python-base
 
     # python
 ENV PYTHONUNBUFFERED=1 \
@@ -39,7 +39,7 @@ RUN apt-get update \
         build-essential
 
 # install poetry - respects $POETRY_VERSION & $POETRY_HOME
-RUN pip install poetry
+RUN curl -sSL https://raw.githubusercontent.com/sdispater/poetry/master/get-poetry.py | python
 
 RUN apt-get update \
     && apt-get -y install libpq-dev gcc \
