@@ -14,6 +14,8 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 import os
 from pathlib import Path
 
+from chave import generate_secret_key
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -151,7 +153,7 @@ INTERNAL_IPS = [
     '127.0.0.1',
 ]
 
-SECRET_KEY = os.environ.get("SECRET_KEY")
+SECRET_KEY = generate_secret_key()
 
 DEBUG = int(os.environ.get("DEBUG", default=0))
 
