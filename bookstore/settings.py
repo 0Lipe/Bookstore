@@ -151,7 +151,7 @@ REST_FRAMEWORK = {
 
 
 INTERNAL_IPS = [
-    '127.0.0.1',
+    "127.0.0.1",
 ]
 
 SECRET_KEY = "w@*s6+qe%vu4@+^w2ap1hanbibqrdr6rz%o62cyvkc4!+fxd1e"
