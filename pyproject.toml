@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "bookstore1"
+name = "bookstore"
 version = "0.1.0"
 description = "BookStore API"
 authors = ["Felipe <silvafelipes021@gmail.com>"]
