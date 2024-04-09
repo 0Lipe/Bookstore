@@ -66,7 +66,7 @@ ROOT_URLCONF = "bookstore.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [],
+        "DIRS": [os.path.join(BASE_DIR, "bookstore","templates")],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -109,7 +109,7 @@ LOGGING = {
         "level": "WARNING",
     },
 }
-# Password validation
+# Password validation aa
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
